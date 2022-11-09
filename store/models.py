@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 # # Create your models here.
 
 class Promotion(models.Model):
-    title = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    featured_product = models.ForeignKey('Product', on_delete=models.SET_NULL, null=True)
 
 class Collection(models.Model):
     title  = models.CharField(max_length=255)
@@ -41,7 +42,7 @@ class Address(models.CharField):
     area = models.CharField(max_length = 255)
     city = models.CharField(max_length=30)
     pincode = models.CharField(max_length=10)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
 
 class Order(models.Model):
     pending = 'Pending'
