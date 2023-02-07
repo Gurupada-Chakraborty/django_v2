@@ -50,12 +50,12 @@ class Order(models.Model):
     pending = 'Pending'
     completed = 'Completed'
     failed = 'Failed'
-    payment_status = [
+    status = [
         (pending, 'Payment Pending'),
         (completed, 'Payment Confirmed'),
         (failed, 'Payment Failed'),
     ]
-    status = models.CharField(max_length=10, choices=payment_status, default=pending)
+    payment_status = models.CharField(max_length=10, choices=status, default=pending)
     placed_at = models.DateTimeField(auto_now_add=True)
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     
